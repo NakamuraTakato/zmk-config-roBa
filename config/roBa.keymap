@@ -165,7 +165,11 @@
             >;
         };
 
-        mac_mouse {
+        // ============================================================
+        // 共通レイヤー（Mac/Win両方で使用）
+        // ============================================================
+
+        mouse {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
@@ -174,7 +178,7 @@
             >;
         };
 
-        mac_scroll {
+        scroll {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
@@ -201,7 +205,7 @@
 &kp Q             &kp W      &kp E       &kp R      &kp T                                          &kp Y          &kp U  &kp I     &kp O     &kp P
 &kp A             &kp S      &kp D       &kp F      &kp G        &none                &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
 &mt LEFT_SHIFT Z  &kp X      &kp C       &kp V      &kp B        &none                &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
-&kp LEFT_WIN      &kp COMMA  &kp PERIOD  &lt 1 TAB  &lt 2 SPACE  &mt LCTRL LANG2      &lt 3 LANG1  &kp BACKSPACE                             &lt 6 ESC
+&kp LEFT_WIN      &kp COMMA  &kp PERIOD  &lt 8 TAB  &lt 9 SPACE  &mt LCTRL LANG2      &lt 10 LANG1  &kp BACKSPACE                             &lt 6 ESC
             >;
         };
 
@@ -232,22 +236,7 @@
             >;
         };
 
-        win_mouse {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
-            >;
-        };
-
-        win_scroll {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
+        // 注: レイヤー4（MOUSE）とレイヤー5（SCROLL）はMac/Win共通で使用
+        // トラックボールの自動レイヤー機能により、OS切り替え後も同じマウス動作
     };
 };
