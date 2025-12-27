@@ -201,19 +201,10 @@
 
         win_default_layer {
             bindings = <
-&kp Q             &kp W      &kp E       &kp R      &kp T                                                 &kp Y          &kp U  &kp I     &kp O     &kp P
-&kp A             &kp S      &kp D       &kp F      &kp G        &none                       &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
-&mt LEFT_SHIFT Z  &kp X      &kp C       &kp V      &kp B        &none                       &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
-&kp LCTRL         &kp COMMA  &kp PERIOD  &lt 1 TAB  &lt 2 SPACE  &mt LEFT_COMMAND LANG2      &lt 3 LANG1  &kp BACKSPACE                             &lt 8 ESC
-            >;
-        };
-
-        win_function {
-            bindings = <
-&kp PERCENT  &kp DOLLAR  &kp AMPERSAND  &kp CARET        &kp SLASH                         &kp BACKSLASH   &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN
-&kp AT_SIGN  &kp HASH    &kp ASTERISK   &kp PLUS         &kp EQUAL     &trans      &trans  &kp UNDERSCORE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp COLON
-&kp GRAVE    &kp TILDE   &trans         &kp EXCLAMATION  &kp QUESTION  &trans      &trans  &kp PIPE        &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp SQT        &kp DOUBLE_QUOTES
-&trans       &trans      &trans         &trans           &trans        &trans      &trans  &trans                                                                      &trans
+&kp Q             &kp W      &kp E       &kp R      &kp T                                          &kp Y          &kp U  &kp I     &kp O     &kp P
+&kp A             &kp S      &kp D       &kp F      &kp G        &none                &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
+&mt LEFT_SHIFT Z  &kp X      &kp C       &kp V      &kp B        &none                &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
+&kp LEFT_WIN      &kp COMMA  &kp PERIOD  &lt 5 TAB  &lt 6 SPACE  &mt LCTRL LANG2      &lt 7 LANG1  &kp BACKSPACE                             &lt 8 ESC
             >;
         };
 
@@ -226,12 +217,21 @@
             >;
         };
 
+        win_function {
+            bindings = <
+&kp PERCENT  &kp DOLLAR  &kp AMPERSAND  &kp CARET        &kp SLASH                         &kp BACKSLASH   &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN
+&kp AT_SIGN  &kp HASH    &kp ASTERISK   &kp PLUS         &kp EQUAL     &trans      &trans  &kp UNDERSCORE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp COLON
+&kp GRAVE    &kp TILDE   &trans         &kp EXCLAMATION  &kp QUESTION  &trans      &trans  &kp PIPE        &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp SQT        &kp DOUBLE_QUOTES
+&trans       &trans      &trans         &trans           &trans        &trans      &trans  &trans                                                                      &trans
+            >;
+        };
+
         win_arrow {
             bindings = <
-&kp LG(Q)  &kp LG(W)  &none      &none      &kp LG(T)                      &kp LC(LS(LG(NUMBER_4)))  &trans                  &trans                  &trans                   &kp C_VOLUME_UP
-&kp LG(A)  &kp LG(S)  &none      &none      &none      &none       &trans  &trans                    &kp LG(LEFT_BRACKET)    &kp LG(LA(UP_ARROW))    &kp LG(RIGHT_BRACKET)    &kp C_VOL_DN
-&none      &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LG(B)  &none       &trans  &trans                    &kp LG(LA(LEFT_ARROW))  &kp LG(LA(DOWN_ARROW))  &kp LG(LA(RIGHT_ARROW))  &kp LA(LG(L))
-&trans     &trans     &trans     &trans     &trans     &trans      &trans  &trans                                                                                             &kp LC(UP_ARROW)
+&kp LC(Q)  &kp LC(W)  &none      &none      &kp LC(T)                      &kp LS(LG(S))  &trans              &trans  &trans               &kp C_VOLUME_UP
+&kp LC(A)  &kp LC(S)  &none      &none      &none      &none       &trans  &trans         &kp LA(LEFT_ARROW)  &trans  &kp LA(RIGHT_ARROW)  &kp C_VOL_DN
+&none      &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)  &none       &trans  &trans         &trans              &trans  &trans               &trans
+&trans     &trans     &trans     &trans     &trans     &trans      &trans  &trans                                                          &trans
             >;
         };
 
