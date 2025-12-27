@@ -3,14 +3,35 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+// ============================================================
+// roBa キーボード - レイヤー構成
+// ============================================================
+// Mac用レイヤー (0-3):
+//   0: mac_default_layer    - Mac用QWERTY
+//   1: mac_function         - Mac用ファンクションキー
+//   2: mac_num              - Mac用テンキー・記号
+//   3: mac_arrow            - Mac用矢印・ナビゲーション
+//
+// Windows用レイヤー (4-7):
+//   4: win_default_layer    - Win用QWERTY
+//   5: win_function         - Win用ファンクションキー
+//   6: win_num              - Win用テンキー・記号
+//   7: win_arrow            - Win用矢印・ナビゲーション
+//
+// 共通レイヤー (8-10):
+//   8: settings_layer       - Mac/Win切替、BT管理
+//   9: mouse                - マウスクリック（トラックボール自動）
+//  10: scroll               - スクロールモード
+// ============================================================
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
 };
 
 &trackball {
-    automouse-layer = <4>;
-    scroll-layers = <5>;
+    automouse-layer = <9>;   // マウスレイヤー（共通）
+    scroll-layers = <10>;    // スクロールレイヤー（共通）
 
     // arrows {
     //     layers = <3>;
@@ -49,37 +70,31 @@
         };
 
         // Macモードに切り替え（BT0 + レイヤー0をベースに）
-
         switch_to_mac: switch_to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 4>,
+                <&toggle_layer_off 4>,    // Winレイヤー4をOFF
                 <&macro_tap>,
-                <&toggle_layer_on 0>,
+                <&toggle_layer_on 0>,     // Macレイヤー0をON
                 <&macro_tap>,
-                <&bt BT_SEL 0>;
-
-            // Bluetoothプロファイル0を選択
+                <&bt BT_SEL 0>;           // Bluetoothプロファイル0を選択
 
             label = "SWITCH_TO_MAC";
         };
 
-        // Windowsモードに切り替え（BT1 + レイヤー7をベースに）
-
+        // Windowsモードに切り替え（BT1 + レイヤー4をベースに）
         switch_to_win: switch_to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 0>,
+                <&toggle_layer_off 0>,    // Macレイヤー0をOFF
                 <&macro_tap>,
-                <&toggle_layer_on 4>,
+                <&toggle_layer_on 4>,     // Winレイヤー4をON
                 <&macro_tap>,
-                <&bt BT_SEL 1>;
-
-            // Bluetoothプロファイル1を選択
+                <&bt BT_SEL 1>;           // Bluetoothプロファイル1を選択
 
             label = "SWITCH_TO_WIN";
         };
@@ -126,7 +141,7 @@
         compatible = "zmk,keymap";
 
         // ============================================================
-        // Mac用レイヤー (0-6)
+        // Mac用レイヤー (0-3)
         // ============================================================
 
         mac_default_layer {
@@ -165,6 +180,10 @@
             >;
         };
 
+        // ============================================================
+        // Windows用レイヤー (4-7)
+        // ============================================================
+
         win_default_layer {
             bindings = <
 &kp Q             &kp W      &kp E       &kp R      &kp T                                          &kp Y          &kp U  &kp I     &kp O     &kp P
@@ -201,6 +220,13 @@
             >;
         };
 
+        // ============================================================
+        // 共通レイヤー (8-10)
+        // レイヤー8: 設定（Mac/Win切替、BT接続管理）
+        // レイヤー9: マウス（トラックボール自動切替）
+        // レイヤー10: スクロール
+        // ============================================================
+
         settings_layer {
             bindings = <
 &trans  &trans        &trans        &trans        &trans                           &switch_to_mac  &switch_to_win  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
@@ -227,8 +253,5 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
-
-        // 注: レイヤー4（MOUSE）とレイヤー5（SCROLL）はMac/Win共通で使用
-        // トラックボールの自動レイヤー機能により、OS切り替え後も同じマウス動作
     };
 };
