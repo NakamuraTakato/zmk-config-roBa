@@ -30,28 +30,13 @@
         compatible = "zmk,combos";
 
         tab {
-            bindings = <&kp TAB>;
+            bindings = <&kp LS(TAB)>;
             key-positions = <11 12>;
         };
 
         shift_tab {
-            bindings = <&kp LS(TAB)>;
+            bindings = <&kp TAB>;
             key-positions = <12 13>;
-        };
-
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
-        };
-
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
         };
     };
 
@@ -146,10 +131,10 @@
 
         mac_default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R      &kp T                                                 &kp Y          &kp U  &lt 5 I   &kp O     &kp P
-&kp A             &kp S         &kp D         &kp F      &kp G        &none                       &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp B        &none                       &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &lt 2 SPACE  &mt LEFT_COMMAND LANG2      &lt 3 LANG1  &kp BACKSPACE                             &lt 6 ESC
+&kp Q             &kp W      &kp E       &kp R      &kp T                                                 &kp Y          &kp U  &kp I     &kp O     &kp P
+&kp A             &kp S      &kp D       &kp F      &kp G        &none                       &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
+&mt LEFT_SHIFT Z  &kp X      &kp C       &kp V      &kp B        &none                       &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
+&kp LCTRL         &kp COMMA  &kp PERIOD  &lt 1 TAB  &lt 2 SPACE  &mt LEFT_COMMAND LANG2      &lt 3 LANG1  &kp BACKSPACE                             &lt 6 ESC
             >;
         };
 
