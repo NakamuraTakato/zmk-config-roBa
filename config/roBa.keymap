@@ -228,10 +228,10 @@
 
         win_arrow {
             bindings = <
-&kp LC(Q)  &kp LC(W)  &none      &none      &kp LC(T)                      &kp LS(LG(S))  &trans              &trans  &trans               &kp C_VOLUME_UP
-&kp LC(A)  &kp LC(S)  &none      &none      &none      &none       &trans  &trans         &kp LA(LEFT_ARROW)  &trans  &kp LA(RIGHT_ARROW)  &kp C_VOL_DN
-&none      &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)  &none       &trans  &trans         &trans              &trans  &trans               &trans
-&trans     &trans     &trans     &trans     &trans     &trans      &trans  &trans                                                          &trans
+&kp LA(F4)  &kp LC(W)  &none      &none      &kp LC(T)                      &kp LS(LG(S))  &trans              &trans  &trans               &kp C_VOLUME_UP
+&kp LC(A)   &kp LC(S)  &none      &none      &none      &none       &trans  &trans         &kp LA(LEFT_ARROW)  &trans  &kp LA(RIGHT_ARROW)  &kp C_VOL_DN
+&none       &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)  &none       &trans  &trans         &kp LC(LS(TAB))     &trans  &kp LC(TAB)          &trans
+&trans      &trans     &trans     &trans     &trans     &trans      &trans  &trans                                                          &trans
             >;
         };
 
