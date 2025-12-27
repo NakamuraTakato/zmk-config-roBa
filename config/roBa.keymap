@@ -19,7 +19,6 @@
     //         <&kp LEFT_ARROW>,
     //         <&kp UP_ARROW>,
     //         <&kp DOWN_ARROW>;
-
     //     tick = <10>;
     //     wait-ms = <5>;
     //     tap-ms = <5>;
@@ -65,32 +64,34 @@
         };
 
         // Macモードに切り替え（BT0 + レイヤー0をベースに）
+
         switch_to_mac: switch_to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 7>,    // WinレイヤーをOFF
+                <&toggle_layer_off 7>,
                 <&macro_tap>,
-                <&toggle_layer_on 0>,     // MacレイヤーをON
+                <&toggle_layer_on 0>,
                 <&macro_tap>,
-                <&bt BT_SEL 0>;           // Bluetoothプロファイル0を選択
-
+                <&bt BT_SEL 0>;
+           // Bluetoothプロファイル0を選択
             label = "SWITCH_TO_MAC";
         };
 
         // Windowsモードに切り替え（BT1 + レイヤー7をベースに）
+
         switch_to_win: switch_to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 0>,    // MacレイヤーをレイヤーをOFF
+                <&toggle_layer_off 0>,
                 <&macro_tap>,
-                <&toggle_layer_on 7>,     // WinレイヤーをON
+                <&toggle_layer_on 7>,
                 <&macro_tap>,
-                <&bt BT_SEL 1>;           // Bluetoothプロファイル1を選択
-
+                <&bt BT_SEL 1>;
+           // Bluetoothプロファイル1を選択
             label = "SWITCH_TO_WIN";
         };
     };
@@ -106,6 +107,7 @@
         };
 
         // レイヤーを明示的にONにするbehavior
+
         toggle_layer_on: toggle_layer_on {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -118,6 +120,7 @@
         };
 
         // レイヤーを明示的にOFFにするbehavior
+
         toggle_layer_off: toggle_layer_off {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -139,13 +142,11 @@
 
         mac_default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                        &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y          &kp U  &lt 5 I   &kp O     &kp P
+&kp A             &kp S         &kp D         &kp F                        &kp G        &kp LS(LG(S))                      &trans         &kp H          &kp J  &kp K     &kp L     &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &lt 3 LANG1    &kp BACKSPACE                             &lt 6 ESC
             >;
-
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         mac_function {
@@ -173,8 +174,6 @@
 &kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
             >;
-
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         mac_mouse {
@@ -200,7 +199,7 @@
 &trans  &trans        &trans        &trans        &trans                           &switch_to_mac  &switch_to_win  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans          &trans          &trans        &trans        &trans
 &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans          &trans          &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                    &bt BT_CLR_ALL
+&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                      &bt BT_CLR_ALL
             >;
         };
 
@@ -210,13 +209,11 @@
 
         win_default_layer {
             bindings = <
-&kp Q             &kp W        &kp E         &kp R                        &kp T                                                          &kp Y        &kp U  &lt 12 I   &kp O    &kp P
-&kp A             &kp S        &kp D         &kp F                        &kp G        &kp LS(LC(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
-&mt LEFT_SHIFT Z  &kp X        &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LEFT_WIN      &kp LEFT_ALT &kp LCTRL     &lt_to_layer_0 6 INT_HENKAN  &lt 9 SPACE  &lt_to_layer_0 10 INT_MUHENKAN     &kp BACKSPACE  &lt 8 ENTER                             &kp DEL
+&kp Q             &kp W         &kp E      &kp R                        &kp T                                                           &kp Y        &kp U  &lt 12 I   &kp O    &kp P
+&kp A             &kp S         &kp D      &kp F                        &kp G        &kp LS(LC(S))                       &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
+&mt LEFT_SHIFT Z  &kp X         &kp C      &kp V                        &kp B        &kp COLON                           &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LEFT_WIN      &kp LEFT_ALT  &kp LCTRL  &lt_to_layer_0 6 INT_HENKAN  &lt 9 SPACE  &lt_to_layer_0 10 INT_MUHENKAN      &kp BACKSPACE  &lt 8 ENTER                             &kp DEL
             >;
-
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         win_function {
@@ -244,8 +241,6 @@
 &kp LEFT_SHIFT  &kp LC(LS(LEFT_ARROW))  &trans          &kp LC(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
             >;
-
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         win_mouse {
