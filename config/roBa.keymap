@@ -237,10 +237,10 @@
 
         settings_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                              &switch_to_mac  &switch_to_win  &switch_to_win2  &bt BT_SEL 3     &bt BT_SEL 4
-&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &trans      &trans         &trans          &kp HOME        &kp UP_ARROW     &kp END          &bt BT_CLR_ALL
-&trans  &kp F2  &kp F3  &kp F4  &kp F5   &trans      &kp LC(LG(A))  &trans          &kp LEFT_ARROW  &kp DOWN_ARROW   &kp RIGHT_ARROW  &trans
-&trans  &trans  &trans  &trans  &trans   &trans      &kp RIGHT_ALT  &kp DELETE                                                        &trans
+&bootloader  &trans  &trans  &trans  &trans                              &switch_to_mac  &switch_to_win  &switch_to_win2  &bt BT_SEL 3     &bt BT_SEL 4
+&kp F6       &kp F7  &kp F8  &kp F9  &kp F10  &trans      &trans         &trans          &kp HOME        &kp UP_ARROW     &kp END          &bt BT_CLR_ALL
+&trans       &kp F2  &kp F3  &kp F4  &kp F5   &trans      &kp LC(LG(A))  &trans          &kp LEFT_ARROW  &kp DOWN_ARROW   &kp RIGHT_ARROW  &trans
+&trans       &trans  &trans  &trans  &trans   &trans      &kp RIGHT_ALT  &kp DELETE                                                        &trans
             >;
         };
 
