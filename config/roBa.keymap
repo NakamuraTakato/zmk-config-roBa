@@ -75,7 +75,9 @@
                 <&toggle_layer_on 0>,
                 <&macro_tap>,
                 <&bt BT_SEL 0>;
-           // Bluetoothプロファイル0を選択
+
+            // Bluetoothプロファイル0を選択
+
             label = "SWITCH_TO_MAC";
         };
 
@@ -91,7 +93,9 @@
                 <&toggle_layer_on 7>,
                 <&macro_tap>,
                 <&bt BT_SEL 1>;
-           // Bluetoothプロファイル1を選択
+
+            // Bluetoothプロファイル1を選択
+
             label = "SWITCH_TO_WIN";
         };
     };
@@ -142,10 +146,10 @@
 
         mac_default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y          &kp U  &lt 5 I   &kp O     &kp P
-&kp A             &kp S         &kp D         &kp F                        &kp G        &kp LS(LG(S))                      &trans         &kp H          &kp J  &kp K     &kp L     &kp MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &lt 3 LANG1    &kp BACKSPACE                             &lt 6 ESC
+&kp Q             &kp W         &kp E         &kp R      &kp T                                                 &kp Y          &kp U  &lt 5 I   &kp O     &kp P
+&kp A             &kp S         &kp D         &kp F      &kp G        &none                       &none        &kp H          &kp J  &kp K     &kp L     &kp MINUS
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp B        &none                       &none        &kp N          &kp M  &mkp MB1  &mkp MB2  &mt RIGHT_SHIFT ENTER
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &lt 2 SPACE  &mt LEFT_COMMAND LANG2      &lt 3 LANG1  &kp BACKSPACE                             &lt 6 ESC
             >;
         };
 
