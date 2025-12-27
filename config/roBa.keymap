@@ -223,19 +223,19 @@
 
         settings_layer {
             bindings = <
-&trans  &trans        &trans        &trans        &trans                           &switch_to_mac  &switch_to_win  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans          &trans          &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans          &trans          &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                      &none
+&trans  &trans  &trans  &trans  &trans                              &switch_to_mac  &switch_to_win  &bt BT_SEL 2    &bt BT_SEL 3     &bt BT_SEL 4
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &trans      &trans         &trans          &kp HOME        &kp UP_ARROW    &kp END          &bt BT_CLR_ALL
+&trans  &kp F2  &kp F3  &kp F4  &kp F5   &trans      &kp LC(LG(A))  &trans          &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
+&trans  &trans  &trans  &trans  &trans   &trans      &kp RIGHT_ALT  &kp DELETE                                                       &trans
             >;
         };
 
         mouse {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &none   &none     &none     &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mo 10  &mkp MB1  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
+&trans  &trans  &trans  &trans  &trans                      &trans         &trans  &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans         &none   &none     &none     &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans         &mo 10  &mkp MB1  &mkp MB2  &kp ENTER
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp BACKSPACE                              &trans
             >;
         };
 
