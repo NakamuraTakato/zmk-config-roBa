@@ -80,7 +80,9 @@
                 <&toggle_layer_on 0>,
                 <&macro_tap>,
                 <&bt BT_SEL 0>;
-           // Bluetoothプロファイル0を選択
+
+            // Bluetoothプロファイル0を選択
+
             label = "SWITCH_TO_MAC";
         };
 
@@ -96,7 +98,9 @@
                 <&toggle_layer_on 4>,
                 <&macro_tap>,
                 <&bt BT_SEL 1>;
-           // Bluetoothプロファイル1を選択
+
+            // Bluetoothプロファイル1を選択
+
             label = "SWITCH_TO_WIN";
         };
     };
@@ -165,10 +169,10 @@
 
         mac_function {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
-&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
+&kp PERCENT  &kp DOLLAR  &kp AMPERSAND  &kp CARET        &kp SLASH                         &kp BACKSLASH   &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN
+&kp AT_SIGN  &kp HASH    &kp ASTERISK   &kp PLUS         &kp EQUAL     &trans      &trans  &kp UNDERSCORE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp COLON
+&kp GRAVE    &kp TILDE   &trans         &kp EXCLAMATION  &kp QUESTION  &trans      &trans  &kp PIPE        &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp SQT        &kp DOUBLE_QUOTES
+&trans       &trans      &trans         &trans           &trans        &trans      &trans  &trans                                                                      &trans
             >;
         };
 
