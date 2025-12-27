@@ -412,12 +412,194 @@ A: `CONFIG_PMW3610_CPI`の値を調整してください（200-1600の範囲）�
 
 ---
 
+## Mac/Windows自動切り替え機能
+
+### 概要
+
+このキーボードには、**Bluetooth接続切り替えと同時にキーマップレイヤーも自動的に切り替わる**機能が実装されています。これにより、MacとWindowsで異なるキー配置（特にCmd/Ctrl、Option/Altの違い）に自動対応できます。
+
+### レイヤー構成
+
+#### Mac用レイヤー（0-6）
+- **レイヤー0**: Mac用デフォルト（QWERTY）
+- **レイヤー1**: Mac FUNCTION（F1-F13）
+- **レイヤー2**: Mac NUM（テンキー・記号）
+- **レイヤー3**: Mac ARROW（矢印・ナビゲーション）
+- **レイヤー4**: Mac MOUSE（マウスクリック）- トラックボール自動
+- **レイヤー5**: Mac SCROLL（スクロールモード）
+- **レイヤー6**: 設定レイヤー（共通）
+
+#### Windows用レイヤー（7-12）
+- **レイヤー7**: Windows用デフォルト（QWERTY）
+- **レイヤー8**: Win FUNCTION（F1-F13）
+- **レイヤー9**: Win NUM（テンキー・記号）
+- **レイヤー10**: Win ARROW（矢印・ナビゲーション）
+- **レイヤー11**: Win MOUSE（マウスクリック）
+- **レイヤー12**: Win SCROLL（スクロールモード）
+
+### Mac/Windowsの主な違い
+
+| 機能 | Mac（レイヤー0） | Windows（レイヤー7） |
+|------|----------------|-------------------|
+| 修飾キー配置 | Ctrl → Win → Alt | Win → Alt → Ctrl |
+| スクリーンショット | `Cmd+Shift+S` | `Ctrl+Shift+S` |
+| テキスト選択拡張 | `Cmd+Shift+←/→` | `Ctrl+Shift+←/→` |
+
+### 切り替え方法
+
+1. **レイヤー6（設定レイヤー）にアクセス**
+   - 通常時にレイヤー6キーを長押し
+
+2. **切り替えマクロを実行**
+   - **Mac切り替え**: 右手側上段左から1番目のキー（元々のBT_SEL 0の位置）
+   - **Windows切り替え**: 右手側上段左から2番目のキー（元々のBT_SEL 1の位置）
+
+3. **自動実行される処理**
+   ```
+   Macモード:
+   1. Windowsレイヤー(7)をOFF
+   2. Macレイヤー(0)をON
+   3. Bluetoothプロファイル0に接続
+
+   Windowsモード:
+   1. Macレイヤー(0)をOFF
+   2. Windowsレイヤー(7)をON
+   3. Bluetoothプロファイル1に接続
+   ```
+
+### 実装の技術詳細
+
+#### 1. Toggle Layer Behavior
+
+明示的なレイヤーON/OFF制御のため、以下のbehaviorを実装：
+
+```c
+// レイヤーを明示的にONにする
+toggle_layer_on: toggle_layer_on {
+    compatible = "zmk,behavior-macro-one-param";
+    #binding-cells = <1>;
+    bindings = <&macro_param_1to1>, <&macro_tap>, <&tog MACRO_PLACEHOLDER>;
+    label = "TOGGLE_LAYER_ON";
+};
+
+// レイヤーを明示的にOFFにする
+toggle_layer_off: toggle_layer_off {
+    compatible = "zmk,behavior-macro-one-param";
+    #binding-cells = <1>;
+    bindings = <&macro_param_1to1>, <&macro_tap>, <&tog MACRO_PLACEHOLDER>;
+    label = "TOGGLE_LAYER_OFF";
+};
+```
+
+#### 2. 切り替えマクロ
+
+```c
+// Macモード切り替え
+switch_to_mac: switch_to_mac {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings =
+        <&macro_tap>, <&toggle_layer_off 7>,  // WinレイヤーOFF
+        <&macro_tap>, <&toggle_layer_on 0>,   // MacレイヤーON
+        <&macro_tap>, <&bt BT_SEL 0>;         // BT0選択
+    label = "SWITCH_TO_MAC";
+};
+
+// Windowsモード切り替え
+switch_to_win: switch_to_win {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings =
+        <&macro_tap>, <&toggle_layer_off 0>,  // MacレイヤーOFF
+        <&macro_tap>, <&toggle_layer_on 7>,   // WinレイヤーON
+        <&macro_tap>, <&bt BT_SEL 1>;         // BT1選択
+    label = "SWITCH_TO_WIN";
+};
+```
+
+### カスタマイズ例
+
+#### Bluetoothプロファイル番号を変更
+
+例えば、MacをBT2、WindowsをBT3に変更したい場合：
+
+`config/roBa.keymap`の該当箇所を編集：
+
+```c
+switch_to_mac: switch_to_mac {
+    // ...
+    <&bt BT_SEL 2>;  // 0 → 2に変更
+};
+
+switch_to_win: switch_to_win {
+    // ...
+    <&bt BT_SEL 3>;  // 1 → 3に変更
+};
+```
+
+#### Windows用レイヤーのキー配置を変更
+
+`config/roBa.keymap`の`win_default_layer`セクションを編集：
+
+```c
+win_default_layer {
+    bindings = <
+        // ここでキー配置を変更
+        &kp Q  &kp W  &kp E  ...
+    >;
+};
+```
+
+### トラブルシューティング
+
+#### 切り替え後にレイヤーが正しく動作しない
+
+**原因**: 電源投入時のレイヤー状態が不整合
+
+**解決策**:
+1. `settings_reset-*.uf2`を書き込んでリセット
+2. 再度通常のファームウェアを書き込む
+3. 切り替えマクロを再実行
+
+#### Bluetooth接続は切り替わるがレイヤーが変わらない
+
+**原因**: Toggle behaviorが正しく動作していない可能性
+
+**解決策**:
+1. 設定レイヤー（レイヤー6）で別のBluetoothプロファイルを手動選択
+2. 再度マクロを実行してレイヤーを同期
+
+#### Mac/Win両方で同じレイヤーを使いたい
+
+機能レイヤー（FUNCTION、NUMなど）はMac/Winで内容が同じ場合が多いため、必要に応じて統合できます。
+
+`config/roBa.keymap`のWindows側のレイヤー切り替えキーを調整：
+
+```c
+win_default_layer {
+    bindings = <
+        // ...
+        &lt 1 ENTER  // Win用レイヤー8ではなく、Mac用レイヤー1を使用
+        // ...
+    >;
+};
+```
+
+### 参考
+
+この機能の実装は、以下の記事を参考にしています：
+- [ZMKで接続先別レイヤー切り替えを実装する](https://zenn.dev/shakupan/articles/261ce435251607)
+
+---
+
 ## まとめ
 
 このプロジェクトは、ZMKファームウェアを使用した高度にカスタマイズ可能な分割型キーボードの設定です。トラックボール統合により、マウス不要で効率的な作業環境を実現できます。
 
+Mac/Windows自動切り替え機能により、複数のデバイス間をシームレスに切り替えながら、各OSに最適化されたキー配置で作業できます。
+
 開発を進める際は、小さな変更から始めて、GitHub Actionsでのビルドを確認しながら進めることをお勧めします。
 
-何か問題が発生した場合は、ZMKコミュニティやこのREADMEのトラブルシューティングセクションを参照してください。
+何か問題が発生した場合は、ZMKコミュニティやこのドキュメントのトラブルシューティングセクションを参照してください。
 
 Happy Hacking! 🎹
