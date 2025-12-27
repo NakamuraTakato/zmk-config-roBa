@@ -32,7 +32,6 @@
 &trackball {
     automouse-layer = <9>;   // マウスレイヤー（共通）
     scroll-layers = <10>;    // スクロールレイヤー（共通）
-
     // arrows {
     //     layers = <3>;
     //     bindings =
@@ -70,32 +69,34 @@
         };
 
         // Macモードに切り替え（BT0 + レイヤー0をベースに）
+
         switch_to_mac: switch_to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 4>,    // Winレイヤー4をOFF
+                <&toggle_layer_off 4>,
                 <&macro_tap>,
-                <&toggle_layer_on 0>,     // Macレイヤー0をON
+                <&toggle_layer_on 0>,
                 <&macro_tap>,
-                <&bt BT_SEL 0>;           // Bluetoothプロファイル0を選択
-
+                <&bt BT_SEL 0>;
+           // Bluetoothプロファイル0を選択
             label = "SWITCH_TO_MAC";
         };
 
         // Windowsモードに切り替え（BT1 + レイヤー4をベースに）
+
         switch_to_win: switch_to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&toggle_layer_off 0>,    // Macレイヤー0をOFF
+                <&toggle_layer_off 0>,
                 <&macro_tap>,
-                <&toggle_layer_on 4>,     // Winレイヤー4をON
+                <&toggle_layer_on 4>,
                 <&macro_tap>,
-                <&bt BT_SEL 1>;           // Bluetoothプロファイル1を選択
-
+                <&bt BT_SEL 1>;
+           // Bluetoothプロファイル1を選択
             label = "SWITCH_TO_WIN";
         };
     };
@@ -153,21 +154,21 @@
             >;
         };
 
+        mac_num {
+            bindings = <
+&kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp MINUS        &kp SLASH                       &kp N7        &kp N8        &kp N9        &none   &kp KP_NUMLOCK
+&kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp PLUS         &kp ASTERISK  &none      &none  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &none   &kp CAPSLOCK
+&kp KP_N1        &kp KP_N2        &kp KP_NUMBER_3  &kp KP_NUMBER_0  &kp PERIOD    &none      &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp N0  &none
+&none            &none            &none            &none            &none         &none      &none  &none                                             &none
+            >;
+        };
+
         mac_function {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
 &trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
-            >;
-        };
-
-        mac_num {
-            bindings = <
-&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
-&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
-&trans                      &trans           &trans           &trans           &trans        &trans                       &trans          &trans                                                                     &kp PIPE
             >;
         };
 
@@ -179,10 +180,6 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
             >;
         };
-
-        // ============================================================
-        // Windows用レイヤー (4-7)
-        // ============================================================
 
         win_default_layer {
             bindings = <
@@ -219,13 +216,6 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
             >;
         };
-
-        // ============================================================
-        // 共通レイヤー (8-10)
-        // レイヤー8: 設定（Mac/Win切替、BT接続管理）
-        // レイヤー9: マウス（トラックボール自動切替）
-        // レイヤー10: スクロール
-        // ============================================================
 
         settings_layer {
             bindings = <
