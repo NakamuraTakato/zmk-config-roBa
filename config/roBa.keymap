@@ -70,16 +70,14 @@
 
         // Macモードに切り替え（BT0 + レイヤー0をベースに）
 
-        switch_to_mac: switch_to_mac {
+        switch_to_macwin: switch_to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
                 <&toggle_layer_off 4>,
                 <&macro_tap>,
-                <&toggle_layer_on 0>,
-                <&macro_tap>,
-                <&bt BT_SEL 0>;
+                <&toggle_layer_on 0>;
 
             // Bluetoothプロファイル0を選択
 
@@ -87,22 +85,6 @@
         };
 
         // Windowsモードに切り替え（BT1 + レイヤー4をベースに）
-
-        switch_to_win: switch_to_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_tap>,
-                <&toggle_layer_off 0>,
-                <&macro_tap>,
-                <&toggle_layer_on 4>,
-                <&macro_tap>,
-                <&bt BT_SEL 1>;
-
-            // Bluetoothプロファイル1を選択
-
-            label = "SWITCH_TO_WIN";
-        };
     };
 
     behaviors {
@@ -139,20 +121,6 @@
                 <&tog MACRO_PLACEHOLDER>;
 
             label = "TOGGLE_LAYER_OFF";
-        };
-
-        switch_to_win2: switch_to_win2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_tap>,
-                <&toggle_layer_off 0>,
-                <&macro_tap>,
-                <&toggle_layer_on 4>,
-                <&macro_tap>,
-                <&bt BT_SEL 2>;
-
-            label = "SWITCH_TO_WIN2";
         };
     };
 
@@ -237,10 +205,10 @@
 
         settings_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                                   &switch_to_mac  &switch_to_win  &switch_to_win2  &bt BT_SEL 3     &bt BT_SEL 4
-&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &bootloader      &bootloader    &trans          &kp HOME        &kp UP_ARROW     &kp END          &bt BT_CLR_ALL
-&trans  &kp F2  &kp F3  &kp F4  &kp F5   &trans           &kp LC(LG(A))  &trans          &kp LEFT_ARROW  &kp DOWN_ARROW   &kp RIGHT_ARROW  &trans
-&trans  &trans  &trans  &trans  &trans   &trans           &kp RIGHT_ALT  &kp DELETE                                                        &trans
+&trans  &trans  &trans  &trans  &trans                                   &switch_to_macwin  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &bootloader      &bootloader    &trans             &kp HOME        &kp UP_ARROW    &kp END          &bt BT_CLR_ALL
+&trans  &kp F2  &kp F3  &kp F4  &kp F5   &trans           &kp LC(LG(A))  &trans             &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
+&trans  &trans  &trans  &trans  &trans   &trans           &kp RIGHT_ALT  &kp DELETE                                                          &trans
             >;
         };
 
